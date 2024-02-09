@@ -11,3 +11,4 @@ jobs:
                   docker login --sierranapieralski --password ${{secrets.ACCESS_TOKEN}} ghcr.io
                   docker build -t ghcr.io/sierranapieralski/arithmetic-service:latest --file Dockerfile .
                   docker push ghcr.io/sierranapieralski/arithmetic-service:latest
+                  docker run -d -p 3000:3000 arithmetic-service
