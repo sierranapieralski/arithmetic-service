@@ -1,0 +1,13 @@
+name: Docker Image CI for GHCR
+on: push
+
+jobs:
+    build_and_publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Build and push the image
+              run: |
+                  docker login --sierranapieralski --password ${{secrets.ACCESS_TOKEN}} ghcr.io
+                  docker build -t ghcr.io/sierranapieralski/arithmetic-service:latest --file Dockerfile .
+                  docker push ghcr.io/sierranapieralski/arithmetic-service:latest
